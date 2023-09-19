@@ -9,7 +9,10 @@ import 'package:meu_app_ex/meu_app_ex.dart' as meu_app_ex;
 // executar utilizando o terminal para inserir valores
 
 void main(List<String> arguments) {
-  print("Sistema de Notas: ");
+  meu_app_ex.executar(); // chamando o method executar para assim que entrar no codigo, ir para o method executar
+
+  /** -- 1 parte do codigo (nao usada mais)
+   * print("Sistema de Notas: ");
   var line = stdin.readLineSync(encoding: utf8); // para ler o console do usuario
 
 // try: tenta executar a acao sem erros
@@ -21,5 +24,6 @@ void main(List<String> arguments) {
     print("$line nao e um numero valido!"); // vai ler o console do usuario (o primeiro print) // executar pelo terminal para poder digitar    
   } finally { 
     print("Executando o finally");
-  } // o finally e executado independentemente se a aplicacao der erro ou nao 
+  } // o finally e executado independentemente se a aplicacao der erro ou nao
+   **/ 
 } 

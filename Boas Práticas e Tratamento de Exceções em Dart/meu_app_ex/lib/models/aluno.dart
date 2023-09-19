@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 class Aluno {
   String _nome = "";
-  List<double> _notas = []; // lista de doubles privada de nome notas, inicializada vazia
+  final List<double> _notas = []; // lista de doubles privada de nome notas, inicializada vazia, por ser final, nao pode ser inicializa outra lista nele
 
 // construtor da class Aluno, recebendo apenas nome
   Aluno(String nome) {
