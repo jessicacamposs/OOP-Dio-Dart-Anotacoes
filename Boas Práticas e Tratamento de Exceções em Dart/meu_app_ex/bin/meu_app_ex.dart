@@ -7,6 +7,7 @@ import 'package:meu_app_ex/meu_app_ex.dart' as meu_app_ex;
 // parse é um método utilizado para converter uma representação de string em um valor numérico
 // evitar colocar comentarios dentro de funcoes para nao causar erros
 // executar utilizando o terminal para inserir valores
+// lints para flutter ou dart, ajudam a identificar erros nos codigos, ja vem instalado por padrao o lints do dart
 
 void main(List<String> arguments) {
   meu_app_ex.executar(); // chamando o method executar para assim que entrar no codigo, ir para o method executar

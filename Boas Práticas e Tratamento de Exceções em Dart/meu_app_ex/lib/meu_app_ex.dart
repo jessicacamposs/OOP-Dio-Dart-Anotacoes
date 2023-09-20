@@ -20,7 +20,8 @@ void executar () {
     throw NomeInvalidoException();
   }
   } // excecao especifica para esse tipo
-    catch (NomeInvalidoException) {
+    // on quer especificar que no caso deste erro, faca isso
+    on NomeInvalidoException {
       nome = "Anonimo"; // sera colocado um nome padrao, caso o usuario nao insira um nome, e o programa continuara rodando
       print(NomeInvalidoException);
       exit(0); // caso queira que o programa se encerre assim que encontrar o erro
