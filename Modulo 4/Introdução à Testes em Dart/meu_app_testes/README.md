@@ -1,2 +1,3 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Introdução à Testes em Dart - Modulo 4 - Curso - Dio Santander Bootcamp 2023 - Mobile com Flutter.
+
+Codigos fornecidos e executados ao longo do curso, comentados para facilitar o acompanhamento do aluno.
