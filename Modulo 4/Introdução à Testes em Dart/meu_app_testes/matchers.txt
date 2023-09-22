@@ -1,0 +1,74 @@
+Matchers are abstracted validation logic that are used in tests to ensure that the specific conditions being tested are met.
+
+An example of a matcher is the isEmpty matcher used to check if the object being tested is empty.
+
+Todos os matches que conseguimos usar nos tests:
+
+General:
+isNull
+isNotNull
+isTrue
+isFalse
+isAnything
+isEmpty (works with Strings, Maps or Collections)
+isZero
+isNonZero
+isPositive
+isNonPositive
+isNegative
+isNonNegative
+equals(validation) equals(expected)
+same(validation) same(expected) // parecido com equals
+
+Numeric:
+greatherThan(validation)
+greatherThanOrEqualTo(validation)
+lessThan(validation)
+lessThanOrEqualTo(validation)
+closeTo(value, delta) // indicar se esta perto
+inInclusiveRange(low, high) low <= actual <= high // indicar se esta incluso no range
+inExclusiveRange(low, high) low < actual < high // indicar se esta excluso do range
+inOpenClosedRange(low, high) low < actual <= high // indicar se esta aberto ou fechado na range
+inClosedOpenRange(low, high) low <= actual < high
+
+Strings:
+equalsIgnoringCase(validation) // se e igual ignorando caseSensitivity
+equalsIgnoringWhiteSpace(validation) // se e igual ignorando espace
+startsWith(prefix) 
+endsWith(suffix)
+stringContainsInOrder(List<String> substrings)
+matches(regexp)
+hasLength(m) for objects who have length
+
+Exceptions:
+returnsNormally
+throws
+throwsA(m)
+throwsA(new isInstanceOf<T>()) Type Checking
+throwsBadNumberFormatException
+throwsException
+throwsIllegalArgumentException
+throwsIndexOutOfRangeException
+throwsNoSuchMethodException
+throwsNotImplementedException
+throwsNullPointerException expect(() => throw new NullPointerException(), throwsNullPointerException)
+throwsUnsupportedOperationException
+
+Content:
+recursivelyMatches(object, [limit])
+contains(m) expect([1, 2, 3, 4], contains(isNonZero));
+everyElement(m)
+someElement(m) expect(foo, someElement(greatherThan(10)));
+
+Iterable:
+orderedEquals(Iterable, expected)
+unorderedEquals(Iterable expected)
+
+Maps:
+containsValue(v)
+containsPair(key, valueOrMatcher)
+
+Inverting Matchers
+isNot(matcher) // para comparar equals, serve como um notEquals
+allOf(List<Mather> matches)
+anyOf(List<Mather> matches)

@@ -49,13 +49,15 @@ void main() {
     // sempre colocar o expected dentro dos blocos de testes
     // o resultado sera concatenado a var valuesToTest, que recebera os valores para o teste
     valuesToTest.forEach((values, expected) {
-      test('Valores de Entrada: $values Valor de saida Esperado: $expected', () {
+      test('Valores de Entrada: $values Valor de saida Esperado: $expected',
+          () {
         expect(
             app.calcularDesconto(
                 double.parse(values["valor"].toString()),
                 double.parse(values["desconto"].toString()),
                 values['percentual'] == true),
-            equals(expected)); // transformar os valores(double) para string (toString), para boolean(true), retornar boolean
+            equals(
+                expected)); // transformar os valores(double) para string (toString), para boolean(true), retornar boolean
       });
     });
   });
@@ -66,7 +68,9 @@ void main() {
 // varios maps com os valores para situacoes de testes
 // nomes de "desconto", "valor" e "percentual" devem ser identicos no group e dentro do double.parse para .toString
 // removido o expected, pois esperamos um erro e nao um resultado
-  group('Calcula o valor do produto informando valores zerados, deve gerar erro ', () {
+  group(
+      'Calcula o valor do produto informando valores zerados, deve gerar erro ',
+      () {
     var valuesToTest = {
       {'valor': 0, 'desconto': 150, 'percentual': false},
       {'valor': 1000, 'desconto': 0, 'percentual': true},
@@ -77,15 +81,54 @@ void main() {
     // mudamos o .forEach para For(in) loop, pois temos apenas um parametro agora e nao dois
     // nao esquecer () => no expected em tests de errors
     for (var values in valuesToTest) {
-      test('Valores de Entrada: $values Valor de saida Esperado: Esperado Erro', () {
+      test('Valores de Entrada: $values Valor de saida Esperado: Esperado Erro',
+          () {
         expect(
-          () =>  app.calcularDesconto(
+            () => app.calcularDesconto(
                 double.parse(values["valor"].toString()),
                 double.parse(values["desconto"].toString()),
                 values['percentual'] == true),
             throwsA(TypeMatcher<
-            ArgumentError>())); // transformar os valores(double) para string (toString), para boolean(true), retornar boolean
+                ArgumentError>())); // transformar os valores(double) para string (toString), para boolean(true), retornar boolean
       });
     }
+  });
+
+  test('Testar Conversao de String para UpperCase', () {
+    expect(
+        app.convertToUpper("dio"),
+        equals(
+            "DIO")); // espera-se que o method app.convertToUpper() retorne DIO
+  });
+
+  test('Testar Conversao de String para UpperCase 2', () {
+    expect(
+        app.convertToUpper("dio"),
+        equalsIgnoringCase("dio")); // espera-se que o method app.convertToUpper() retorne DIO, porem, utilizando o equalsIgnoringCase no lugar do equals, ele ira ignorar o case informado e observara apenas as letras que formam a palavra para saber se sao iguais
+  });
+
+// usando a funcao criada retornarValor com o Double valor
+    test('Valor maior que 50', () {
+    expect(
+        app.retornarValor(50),
+        greaterThanOrEqualTo(50)); // espera-se que o method app.retornarValor(50) retorne um valor maior ou igual(greaterThanOrEqualTo) a (50)
+  });
+
+  test('Comeca com: D + convertToUpper ', () {
+    expect(
+        app.convertToUpper("dio"),
+        startsWith("D")); // espera-se que o method app.convertToUpper() retorne DIO, porem, utilizando o startsWith() no lugar do equals, ele ira dizer se a string comeca com a letra informada
+  });
+
+  test('Valor maior que 50', () {
+    expect(
+        app.retornarValor(50),
+        greaterThanOrEqualTo(50)); // espera-se que o method app.retornarValor(50) retorne um valor maior ou igual(greaterThanOrEqualTo) a (50)
+  });
+
+  test('Valor diferente do anunciado', () {
+    expect(
+        app.retornarValor(51),
+        isNot(equals(50))); // espera-se que o method app.retornarValor(51) retorne um valor diferente(isNot()) a (50), tambem pode ser feito substituindo o equals por isNot
   });
 }
