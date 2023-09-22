@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 /*int calculate() {
   return 6 * 7; // funcao do teste calculate
 } */
@@ -24,3 +26,4 @@ double calcularDesconto(double valor, double desconto, bool percentual) {
  double retornarValor (double valor) {
   return valor;
  }
+ 

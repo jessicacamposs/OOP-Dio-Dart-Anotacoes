@@ -1,10 +1,15 @@
 import 'dart:html';
-
+import 'package:meu_app_testes/classes/viacep.dart';
 import 'package:meu_app_testes/meu_app_testes.dart' as app;
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+
+import 'meu_app_testes_test.mocks.dart';
 
 // caso exista mais de um arquivo com testes e seja executado teste em todos, ira executar os testes em todos os arquivos criados com final test no nome (todos os arquivos para testes em dart deve ter "test" como nome no final)
 // tambem podemos executar testes no terminal com: dart run test .\test\meu_app_testes_test.dart
+@GenerateMocks([MockViaCEP]) // notation para gerar outras classes utilizando o command "dart run build_runner build --delete-conflicting-outputs"
 void main() {
   // funcao test
   test('Calcula o valor do produto com desconto e sem porcentagem', () {
@@ -131,4 +136,34 @@ void main() {
         app.retornarValor(51),
         isNot(equals(50))); // espera-se que o method app.retornarValor(51) retorne um valor diferente(isNot()) a (50), tambem pode ser feito substituindo o equals por isNot
   });
+
+  test('Retornar CEP', () async {
+    MockMockViaCEP mockMockViaCEP = MockMockViaCEP();
+    // map das informações que retornarao mock caso o cep passado seja esse
+    // quando o teste for fidedigno ao mock, o mesno nao precisara entrar no viacep, pois ja possui o resultado
+    // com o mock, conseguimos criar situacoes fidedignas a realidade de algum acesso ou parametro, quando nao possuimos ou podemos ter acesso a eles no momento
+    when(mockMockViaCEP.retornarCep("01001000")).thenAnswer((realInvocation) => Future.value({
+      "cep": "01001-000",
+      "logradouro": "Praça da Sé",
+      "complemento": "lado ímpar",
+      "bairro": "Sé",
+      "localidade": "São Paulo",
+      "uf": "SP",
+      "ibge": "3550308",
+      "gia": "1004",
+      "ddd": "11",
+      "siafi": "7107"
+  })); // deve retornar algo que deixaremos fixo
+    
+    var body = await mockMockViaCEP.retornarCep("01001000");
+    expect(body["bairro"],(equals("Sé"))); // transformou o cep(String) em um Map
+    expect(body["logradouro"], equals("Praça da Sé")); // pode-se ter varios expects no mesmo caso de test
+  });
 }
+
+  // mockar um dado utilizando o mockito
+  // precisa de uma Class intermediaria, para ela extend mock e implements via CEP
+  // precisa implementar ViaCep para poder fazer o seu return Cep
+  class MockViaCEP extends Mock implements ViaCep {
+    
+  }
