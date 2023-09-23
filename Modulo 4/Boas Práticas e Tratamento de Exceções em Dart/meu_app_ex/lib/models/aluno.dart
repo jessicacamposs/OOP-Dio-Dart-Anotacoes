@@ -5,6 +5,7 @@ class Aluno {
   final List<double> _notas = []; // lista de doubles privada de nome notas, inicializada vazia, por ser final, nao pode ser inicializa outra lista nele
 
 // construtor da class Aluno, recebendo apenas nome
+// Em Dart, um construtor é um método especial em uma classe que é usado para inicializar objetos dessa classe. Os construtores têm o mesmo nome da classe e são usados para criar instâncias da classe. Eles permitem que você defina como um objeto deve ser criado e inicializado quando você o instanciar.
   /*Aluno(String nome) {
     _nome = nome;
   }*/
