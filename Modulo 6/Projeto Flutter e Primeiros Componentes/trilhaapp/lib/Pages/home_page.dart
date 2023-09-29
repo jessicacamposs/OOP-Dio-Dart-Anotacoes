@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/Services/gerador_de_numeros_aleatorios_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,8 +20,8 @@ class _HomePageState extends State<HomePage> {
     debugPrint("chamando metodo build"); // utilizado no modo debug
     return Scaffold(
       appBar: AppBar(
-        title:  const Text ("Meu App"),
-      ),body: Center(child: Text(numeroGerado.toString())),
+        title: const Text ("Meu App", /* style: GoogleFonts.pacifico(),*/), // style: permite utilizar fontes importadas, como o GoogleFonts.fonteEscolhida
+      ),body: Center(child: Text(numeroGerado.toString(), /*style: GoogleFonts.aDLaMDisplay(fontSize: 25),*/)), // fontSize: recebe o tamanho escolhido para a fonte
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
